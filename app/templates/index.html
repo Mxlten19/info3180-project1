@@ -1,0 +1,21 @@
+{% extends "header.html" %}
+{% block title %}PropList · Find Your Next Home{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="hero-text">
+    <h1>Find Your <span class="accent">Perfect</span><br>Property</h1>
+    <p>Browse houses and apartments available for rent or sale across the island.</p>
+    <div class="hero-actions">
+      <a href="{{ url_for('main.properties') }}" class="btn btn-primary">Browse Properties</a>
+      <a href="{{ url_for('main.create_property') }}" class="btn btn-outline">List a Property</a>
+    </div>
+  </div>
+  <div class="hero-graphic">
+    <div class="hero-card">
+      <div class="hero-card-icon">🏡</div>
+      <span>Houses &amp; Apartments</span>
+    </div>
+  </div>
+</section>
+{% endblock %}

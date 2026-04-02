@@ -1,0 +1,83 @@
+{% extends "header.html" %}
+{% block title %}Add New Property · PropList{% endblock %}
+
+{% block content %}
+<section class="page-header">
+  <h1>Add New <span class="accent">Property</span></h1>
+  <p>Fill in the details below to list your property.</p>
+</section>
+
+<div class="form-wrapper">
+  <form method="POST" action="{{ url_for('main.create_property') }}" enctype="multipart/form-data" novalidate>
+    {{ form.hidden_tag() }}
+
+    <div class="form-group">
+      {{ form.title.label }}
+      {{ form.title(class="form-control", placeholder="e.g. Rivendell Manor - Three Bedroom Townhouse") }}
+      {% for error in form.title.errors %}
+        <span class="form-error">{{ error }}</span>
+      {% endfor %}
+    </div>
+
+    <div class="form-group">
+      {{ form.description.label }}
+      {{ form.description(class="form-control", rows=4, placeholder="Describe the property...") }}
+      {% for error in form.description.errors %}
+        <span class="form-error">{{ error }}</span>
+      {% endfor %}
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        {{ form.no_of_rooms.label }}
+        {{ form.no_of_rooms(class="form-control", placeholder="e.g. 3") }}
+        {% for error in form.no_of_rooms.errors %}
+          <span class="form-error">{{ error }}</span>
+        {% endfor %}
+      </div>
+      <div class="form-group">
+        {{ form.no_of_baths.label }}
+        {{ form.no_of_baths(class="form-control", placeholder="e.g. 2") }}
+        {% for error in form.no_of_baths.errors %}
+          <span class="form-error">{{ error }}</span>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        {{ form.price.label }}
+        {{ form.price(class="form-control", placeholder="e.g. 15000000") }}
+        {% for error in form.price.errors %}
+          <span class="form-error">{{ error }}</span>
+        {% endfor %}
+      </div>
+      <div class="form-group">
+        {{ form.prop_type.label }}
+        {{ form.prop_type(class="form-control") }}
+        {% for error in form.prop_type.errors %}
+          <span class="form-error">{{ error }}</span>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="form-group">
+      {{ form.location.label }}
+      {{ form.location(class="form-control", placeholder="e.g. 10 Waterloo Rd, Kingston 7") }}
+      {% for error in form.location.errors %}
+        <span class="form-error">{{ error }}</span>
+      {% endfor %}
+    </div>
+
+    <div class="form-group">
+      {{ form.photo.label }}
+      {{ form.photo(class="form-control file-input") }}
+      {% for error in form.photo.errors %}
+        <span class="form-error">{{ error }}</span>
+      {% endfor %}
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-full">Add Property</button>
+  </form>
+</div>
+{% endblock %}
