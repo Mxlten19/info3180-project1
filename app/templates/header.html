@@ -10,7 +10,6 @@
 </head>
 <body>
 
-  <!-- ── NAV ── -->
   <header class="navbar">
     <a href="{{ url_for('main.index') }}" class="nav-brand">
       <span class="brand-icon">🏠</span> PropList
@@ -23,7 +22,6 @@
     </nav>
   </header>
 
-  <!-- ── FLASH MESSAGES ── -->
   {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
       <div class="flash-container">
@@ -34,7 +32,6 @@
     {% endif %}
   {% endwith %}
 
-  <!-- ── MAIN CONTENT ── -->
   <main class="main-content">
     {% block content %}{% endblock %}
   </main>
