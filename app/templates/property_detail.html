@@ -1,0 +1,41 @@
+{% extends "header.html" %}
+{% block title %}{{ property.title }} · PropList{% endblock %}
+
+{% block content %}
+<div class="detail-wrapper">
+  <div class="detail-image">
+    <img src="{{ url_for('main.uploaded_file', filename=property.photo) }}" alt="{{ property.title }}">
+  </div>
+
+  <div class="detail-info">
+    <h1 class="detail-title">{{ property.title }}</h1>
+
+    <div class="detail-badges">
+      <span class="badge-price">${{ "{:,.0f}".format(property.price) }}</span>
+      <span class="badge-type badge-{{ property.prop_type|lower }}">{{ property.prop_type }}</span>
+    </div>
+
+    <p class="detail-description">{{ property.description }}</p>
+
+    <div class="detail-meta">
+      <div class="meta-item">
+        <span class="meta-icon">🛏</span>
+        <span>{{ property.no_of_rooms }} Bedroom{{ 's' if property.no_of_rooms != 1 }}</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-icon">🚿</span>
+        <span>{{ property.no_of_baths }} Bathroom{{ 's' if property.no_of_baths != 1 }}</span>
+      </div>
+    </div>
+
+    <div class="detail-location">
+      <span class="meta-icon">📍</span>
+      <span>{{ property.location }}</span>
+    </div>
+
+    <a href="mailto:realtor@proplist.com" class="btn btn-primary">Email Realtor</a>
+
+    <a href="{{ url_for('main.properties') }}" class="btn btn-outline" style="margin-left:1rem;">← Back to Listings</a>
+  </div>
+</div>
+{% endblock %}

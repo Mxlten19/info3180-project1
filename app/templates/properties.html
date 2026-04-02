@@ -1,0 +1,39 @@
+{% extends "header.html" %}
+{% block title %}Properties · PropList{% endblock %}
+
+{% block content %}
+<section class="page-header">
+  <h1>Properties</h1>
+  <p>{{ properties|length }} listing{{ 's' if properties|length != 1 }} available</p>
+</section>
+
+{% if properties %}
+  <div class="properties-grid">
+    {% for prop in properties %}
+    <div class="property-card">
+      <div class="card-image">
+        <img src="{{ url_for('main.uploaded_file', filename=prop.photo) }}" alt="{{ prop.title }}">
+        <span class="card-badge badge-{{ prop.prop_type|lower }}">{{ prop.prop_type }}</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">{{ prop.title }}</h3>
+        <p class="card-location">
+          <span class="icon">📍</span> {{ prop.location }}
+        </p>
+        <p class="card-price">${{ "{:,.0f}".format(prop.price) }}</p>
+      </div>
+      <a href="{{ url_for('main.property_detail', propertyid=prop.id) }}" class="btn btn-primary btn-full card-btn">
+        View Property
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <div class="empty-state">
+    <div class="empty-icon">🏘️</div>
+    <h2>No Properties Yet</h2>
+    <p>Be the first to list one!</p>
+    <a href="{{ url_for('main.create_property') }}" class="btn btn-primary">Add Property</a>
+  </div>
+{% endif %}
+{% endblock %}
